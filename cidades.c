@@ -28,7 +28,7 @@ Estrada *getEstrada(const char *nomeArquivo) {
 	fscanf(arquivo,"%d", &estrada->N);
 	
 
-	for(int i = 0; i <= estrada->N; i++) {	
+	for(int i = 0; i < estrada->N; i++) {	
 		fscanf(arquivo,"%d %50[^\n]", &estrada->C[i].Posicao, estrada->C[i].Nome);
 	}
 
