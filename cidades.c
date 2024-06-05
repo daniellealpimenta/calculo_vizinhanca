@@ -29,7 +29,7 @@ Estrada *getEstrada(const char *nomeArquivo) {
 	fscanf(arquivo,"%d", &estrada->T);
 	fscanf(arquivo,"%d", &estrada->N);
 
-	if (estrada->T || estrada->T > 1000000 || estrada->N > 10000)
+	if (estrada->T < 3 || estrada->T > 1000000 || estrada->N < 2 || estrada->N > 10000)
 	{
 		free(estrada->C);
 		free(estrada);
