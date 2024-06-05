@@ -38,7 +38,7 @@ Estrada *getEstrada(const char *nomeArquivo) {
 	
 
 	for(int i = 0; i < estrada->N; i++) {
-		fscanf(arquivo,"%d %50[^\n]", &estrada->C[i].Posicao, estrada->C[i].Nome);
+		fscanf(arquivo,"%d %100[^\n]", &estrada->C[i].Posicao, estrada->C[i].Nome);
 
 		if (estrada->C[i].Posicao <= 0 || estrada->C[i].Posicao >= estrada->T){
 			free(estrada->C);
@@ -108,8 +108,12 @@ double calcularMenorVizinhanca(const char *nomeArquivo){
             }
         }
     }
-    
+
     return cidade_menor_vizinhanca;
+	
+	free(estrada->C);
+	free(estrada);
+    
 	
 }
 
@@ -121,6 +125,10 @@ char *cidadeMenorVizinhanca(const char *nomeArquivo){
 	
 	printf("Menor vizinhanca: %.2lf\n", menor_vizinhanca);
 	printf("Cidade com menor vizinhanca: %s\n", estrada->C[cidade_menor_vizinhanca].Nome);
-	
+
 	return estrada->C[cidade_menor_vizinhanca].Nome;
+
+	free(estrada->C);
+	free(estrada);
+	
 }
