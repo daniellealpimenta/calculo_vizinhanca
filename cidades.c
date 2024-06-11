@@ -12,7 +12,7 @@ Estrada *getEstrada(const char *nomeArquivo) {
 	    exit(1);
 	}
 	
-	estrada->C = (Cidade*)malloc(sizeof(Cidade));
+	estrada->C = (Cidade*)malloc(estrada->N * sizeof(Cidade));
 	
 	if (estrada->C == NULL) {
 	    perror("Erro ao alocar memoria para o array da lista");
@@ -56,10 +56,21 @@ Estrada *getEstrada(const char *nomeArquivo) {
 			}	
 		}
 	}
+	
+	for (int i = 0; i < estrada->N - 1; i++) {
+        for (int j = 0; j < estrada->N - i - 1; j++) {
+            if (estrada->C[j].Posicao > estrada->C[j + 1].Posicao) {
+                Cidade temp = estrada->C[j];
+                estrada->C[j] = estrada->C[j + 1];
+                estrada->C[j + 1] = temp;
+            }
+        }
+    }
 
+	fclose(arquivo);
+	
 	return estrada;
 	
-	fclose(arquivo);
 	
 	free(estrada->C);
 	free(estrada);
