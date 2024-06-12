@@ -121,7 +121,7 @@ double calcularMenorVizinhanca(const char *nomeArquivo){
         }
     }
 
-    return cidade_menor_vizinhanca;
+    return menor_vizinhanca;
 	
 	free(estrada->C);
 	free(estrada);
