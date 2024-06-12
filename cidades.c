@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "cidades.h"
 
+double menor_vizinhanca;
+int cidade_menor_vizinhanca = 0;
+
 Estrada *getEstrada(const char *nomeArquivo) {
 	Estrada *estrada = (Estrada*)malloc(sizeof(Estrada));
 	
@@ -76,9 +79,6 @@ Estrada *getEstrada(const char *nomeArquivo) {
 	free(estrada->C);
 	free(estrada);
 }
-
-double menor_vizinhanca;
-int cidade_menor_vizinhanca = 0;
 
 double calcularMenorVizinhanca(const char *nomeArquivo){
 	
