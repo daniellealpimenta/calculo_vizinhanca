@@ -12,13 +12,6 @@ Estrada *getEstrada(const char *nomeArquivo) {
 	    exit(1);
 	}
 	
-	estrada->C = (Cidade*)malloc(estrada->N * sizeof(Cidade));
-	
-	if (estrada->C == NULL) {
-	    perror("Erro ao alocar memoria para o array da lista");
-	    free(estrada);
-    	exit(1);
-	}
 	
 	FILE *arquivo = fopen(nomeArquivo, "r");
 		if(arquivo == NULL) {
@@ -29,6 +22,14 @@ Estrada *getEstrada(const char *nomeArquivo) {
 	fscanf(arquivo,"%d", &estrada->T);
 	fscanf(arquivo,"%d", &estrada->N);
 
+	estrada->C = (Cidade*)malloc(estrada->N * sizeof(Cidade));
+	
+	if (estrada->C == NULL) {
+	    perror("Erro ao alocar memoria para o array da lista");
+	    free(estrada);
+    	exit(1);
+	}
+
 	if (estrada->T < 3 || estrada->T > 1000000 || estrada->N < 2 || estrada->N > 10000)
 	{
 		free(estrada->C);
@@ -38,7 +39,7 @@ Estrada *getEstrada(const char *nomeArquivo) {
 	
 
 	for(int i = 0; i < estrada->N; i++) {
-		fscanf(arquivo,"%d %100[^\n]", &estrada->C[i].Posicao, estrada->C[i].Nome);
+		fscanf(arquivo,"%d %[^\n]", &estrada->C[i].Posicao, estrada->C[i].Nome);
 
 		if (estrada->C[i].Posicao <= 0 || estrada->C[i].Posicao >= estrada->T){
 			free(estrada->C);
